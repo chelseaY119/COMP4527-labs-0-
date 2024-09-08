@@ -1,8 +1,8 @@
 const buttoncolor = [
   "Red",
   "Yellow",
-  "Blue",
-  "White",
+  "Gray",
+  "Pink",
   "Purple",
   "Orange",
   "Green",
@@ -22,6 +22,7 @@ class Buttons {
     this.btn.style.left = `${left}px`;
   }
 
+  // the logic of how to restrict buttons move within browser window was inspired from the use of chatGPT
   setRandomBtnLocation(container) {
     const containerrect = container.getBoundingClientRect();
 
@@ -56,6 +57,16 @@ class buttonContainer {
     this.buttonArray = [];
   }
 
+  selectRandomBtnColor() {
+    const colornum = buttoncolor.length;
+    const randomIndex = Math.floor(Math.random() * colornum);
+
+    const selectedColor = buttoncolor[randomIndex];
+    buttoncolor.splice(randomIndex, 1);
+
+    return selectedColor;
+  }
+
   addButtontoContainer(button) {
     this.container.appendChild(button.getButton());
     this.buttonArray.push(button);
@@ -69,6 +80,8 @@ class buttonContainer {
       left += button.getButton().offsetWidth + 10;
     }
   }
+
+  // the logic of how to scramble buttons and pause buttons was inspired from the use of chatGPT
 
   scrambleButtons(inputValue) {
     let scrambleTimes = 0;
@@ -154,7 +167,9 @@ class buttonGame {
   start(input) {
     this.container.clear();
     for (let i = 0; i < input; i++) {
-      this.container.addButtontoContainer(new Buttons(this.color[i], i + 1));
+      this.container.addButtontoContainer(
+        new Buttons(this.container.selectRandomBtnColor(), i + 1)
+      );
     }
     this.container.displayInRow();
 
@@ -174,7 +189,7 @@ class buttonGame {
   }
 
   checkUserInput(inputValue) {
-    if (inputValue < 1 || inputValue > 7) {
+    if (inputValue < 3 || inputValue > 7) {
       alert("the user input need to be between 3 and 7!");
     } else {
       return true;
