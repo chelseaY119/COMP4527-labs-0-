@@ -1,0 +1,18 @@
+#button-display-area{
+    height: 80vh;
+    width: 80vw;
+    margin-top:2%;
+
+    position: relative;
+}
+
+#button-display-area button{
+    width: 10em;
+    height: 5em;
+    margin: 1%;
+    font-weight: bold;
+}
+
+#message-area{
+    font-size: 20px;
+}
