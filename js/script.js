@@ -125,7 +125,7 @@ class buttonSeqCheck {
 
   getClickedButtonIds(button) {
     const buttonid = button.getButton().id;
-    this.checkCorrectSeq(buttonid);
+    this.checkCorrectSeq(button, buttonid);
   }
 
   displayCheckMessage(message) {
@@ -142,7 +142,7 @@ class buttonSeqCheck {
     }, 2000);
   }
 
-  checkCorrectSeq(currentid) {
+  checkCorrectSeq(button, currentid) {
     if (this.correctId != currentid) {
       var wrongMessage = new Message("Wrong order!");
       this.revealCorrectOrder();
@@ -153,6 +153,8 @@ class buttonSeqCheck {
       setTimeout(() => {
         this.game.endGame();
       }, 500);
+    } else if (this.correctId == currentid) {
+      document.getElementById(currentid).textContent = button.getButton().id;
     }
     this.correctId++;
   }
