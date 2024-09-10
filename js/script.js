@@ -53,11 +53,13 @@ class buttonContainer {
   constructor(id) {
     this.container = document.getElementById(id);
     this.buttonArray = [];
+    this.buttoncolor = buttoncolor;
   }
 
   clear() {
     this.container.innerHTML = "";
     this.buttonArray = [];
+    this.buttoncolor = buttoncolor;
   }
 
   selectRandomBtnColor() {
