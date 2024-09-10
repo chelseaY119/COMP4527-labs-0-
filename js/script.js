@@ -8,6 +8,9 @@ const buttoncolor = [
   "Green",
 ];
 
+const successMessage = "Excellent memory!";
+const failMessage = "Wrong order!";
+
 class Buttons {
   constructor(color, number) {
     this.btn = document.createElement("button");
@@ -144,11 +147,11 @@ class buttonSeqCheck {
 
   checkCorrectSeq(button, currentid) {
     if (this.correctId != currentid) {
-      var wrongMessage = new Message("Wrong order!");
+      var wrongMessage = new Message(failMessage);
       this.revealCorrectOrder();
       this.displayCheckMessage(wrongMessage);
     } else if (this.correctId == this.size) {
-      var correctMessage = new Message("Excellent memory!");
+      var correctMessage = new Message(successMessage);
       this.displayCheckMessage(correctMessage);
       setTimeout(() => {
         this.game.endGame();
